@@ -1,0 +1,31 @@
+# ----------------------------------------------------------------------------------------------------------------------
+# 
+#     shared
+# 
+# ----------------------------------------------------------------------------------------------------------------------
+shared:
+  image: centos:centos7
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 
+#     jobs
+# 
+# ----------------------------------------------------------------------------------------------------------------------
+jobs:
+  normal:
+    requires: [ ~commit, ~pr ]
+    steps:
+      - echo "Hello, normal job"
+  virtual:
+    annotations:
+      screwdriver.cd/virtualJob: true
+    steps:
+      - hello: echo "This job is not executed."
+  build1:
+    requires: [ virtual ]
+    steps:
+      - hello: echo "Hello build1"
+  build2:
+    requires: [ virtual ]
+    steps:
+      - hello: echo "Hello build2"
