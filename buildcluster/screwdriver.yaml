@@ -18,3 +18,4 @@ jobs:
     requires: [ ~commit, ~pr ]
     steps:
       - echo: echo "test"
+
