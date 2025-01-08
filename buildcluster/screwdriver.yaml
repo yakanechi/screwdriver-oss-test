@@ -12,7 +12,12 @@ shared:
 # 
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
-  test:
+  enabled:
+    requires: [ ~commit, ~pr ]
+    steps:
+      - echo: echo "test"
+  
+  disabled:
     annotations:
       screwdriver.cd/buildCluster: abcdef
     requires: [ ~commit, ~pr ]
