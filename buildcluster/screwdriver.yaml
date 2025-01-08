@@ -12,7 +12,7 @@ shared:
 # 
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
-  main:
+  test:
     annotations:
       screwdriver.cd/buildCluster: abcdef
     requires: [ ~commit, ~pr ]
