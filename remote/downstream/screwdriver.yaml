@@ -14,7 +14,7 @@ shared:
 jobs:
   main:
     requires: [ ~sd@15655:main ]
-    annotations:
-      screwdriver.cd/virtualJob: true
+    # annotations:
+    #   screwdriver.cd/virtualJob: true
     steps:
       - echo "Hello, normal job"
