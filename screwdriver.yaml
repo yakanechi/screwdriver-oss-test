@@ -15,23 +15,4 @@ jobs:
   main:
     requires: [ ~commit, ~pr ]
     steps:
-      - success: |
-            function command() {
-                echo "SUCCESS"
-                return 0
-            }
-            { command_output=$(command 2>&1); sdcmd_status="$?"; [ "$sdcmd_status" -ne 0 ] && { echo "$command_output" | grep -q 'ERROR: Screwdriver API 404 Not Found: Command sd/events@latest does not exist' || { echo "$command_output" && echo "Something wrong while sending events"; } } || echo "$command_output"; }
-      - failure: |
-            set +e
-            function command() {
-                echo "FAILED" >&2
-                return 1
-            }
-            { command_output=$(command 2>&1); sdcmd_status="$?"; [ "$sdcmd_status" -ne 0 ] && { echo "$command_output" | grep -q 'ERROR: Screwdriver API 404 Not Found: Command sd/events@latest does not exist' || { echo "$command_output" && echo "Something wrong while sending events"; } } || echo "$command_output"; }
-      - failure-with-sd-cmd-not-found: |
-            set +e
-            function command() {
-                echo "ERROR: Screwdriver API 404 Not Found: Command sd/events@latest does not exist" >&2
-                return 1
-            }
-            { command_output=$(command 2>&1); sdcmd_status="$?"; [ "$sdcmd_status" -ne 0 ] && { echo "$command_output" | grep -q 'ERROR: Screwdriver API 404 Not Found: Command sd/events@latest does not exist' || { echo "$command_output" && echo "Something wrong while sending events"; } } || echo "$command_output"; }
+      - rm: rm -R $SD_ARTIFACTS_DIR
