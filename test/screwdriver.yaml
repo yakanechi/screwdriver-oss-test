@@ -19,4 +19,4 @@ jobs:
   main:
     requires: [ ~commit, ~pr ]
     environment:
-      GIT_SPARSE_CHECKOUT_PATH: "test"
+      GIT_SPARSE_CHECKOUT_PATH: "test2"
