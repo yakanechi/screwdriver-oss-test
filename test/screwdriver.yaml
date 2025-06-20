@@ -22,6 +22,7 @@ jobs:
       GIT_SPARSE_CHECKOUT_PATH: "test"
     steps:
       - echo: |
+          echo "GIT_SPARSE_CHECKOUT_PATH=${GIT_SPARSE_CHECKOUT_PATH}"
           pwd
           ls -la
           ls -la ../
