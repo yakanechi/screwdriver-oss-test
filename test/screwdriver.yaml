@@ -20,3 +20,8 @@ jobs:
     requires: [ ~commit, ~pr ]
     environment:
       GIT_SPARSE_CHECKOUT_PATH: "test, sub"
+    steps:
+      - echo: |
+          pwd
+          ls -la
+          ls -la ../
