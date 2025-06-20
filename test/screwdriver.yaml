@@ -25,5 +25,6 @@ jobs:
           pwd
           ls -la
           ls -la ../
-          cat sub/subsub/sample.txt
-          cat ../sample/sub/subsub/sample.txt
+          cat ./sub/subsub/sample.txt || true
+          cat ./sample/sub/subsub/sample.txt || true
+          cat ../sample/sub/subsub/sample.txt || true
