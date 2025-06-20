@@ -5,6 +5,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
 shared:
   image: centos:centos7
+  steps:
+    - echo: echo "Hello world"
 
 # ----------------------------------------------------------------------------------------------------------------------
 # 
@@ -14,5 +16,11 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
+    environment:
+      GIT_SPARSE_CHECKOUT_PATH: "sample"
     steps:
-      - rm: rm -R $SD_ARTIFACTS_DIR
+      - echo: |
+          echo "GIT_SPARSE_CHECKOUT_PATH=${GIT_SPARSE_CHECKOUT_PATH}"
+          pwd
+          ls -la
+          ls -la test || true
