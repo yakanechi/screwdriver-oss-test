@@ -29,6 +29,8 @@ jobs:
           ls -la ./sub
           ls -la ./sample
           ls -la ../sample
+          ls -la ../sample/sub
+          ls -la ../sample/subsub
           cat ./sub/subsub/sample.txt || true
           cat ./sample/sub/subsub/sample.txt || true
           cat ../sample/sub/subsub/sample.txt || true
