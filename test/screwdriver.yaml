@@ -19,7 +19,7 @@ jobs:
   main:
     requires: [ ~commit, ~pr ]
     environment:
-      GIT_SPARSE_CHECKOUT_PATH: "test/sub sample"
+      GIT_SPARSE_CHECKOUT_PATH: "test/sub"
     steps:
       - echo: |
           echo "GIT_SPARSE_CHECKOUT_PATH=${GIT_SPARSE_CHECKOUT_PATH}"
