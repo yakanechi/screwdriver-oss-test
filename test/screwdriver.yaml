@@ -25,3 +25,4 @@ jobs:
           pwd
           ls -la
           ls -la ../
+          cat sub/subsub/sample.txt
