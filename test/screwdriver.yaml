@@ -26,3 +26,4 @@ jobs:
           ls -la
           ls -la ../
           cat sub/subsub/sample.txt
+          cat ../sample/sub/subsub/sample.txt
