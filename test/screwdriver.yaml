@@ -19,7 +19,7 @@ jobs:
   main:
     requires: [ ~commit, ~pr ]
     environment:
-      GIT_SPARSE_CHECKOUT_PATH: "test, sub"
+      GIT_SPARSE_CHECKOUT_PATH: "test, sample"
     steps:
       - echo: |
           pwd
