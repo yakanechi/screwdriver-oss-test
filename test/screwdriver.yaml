@@ -16,16 +16,18 @@ shared:
 # 
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
-  main:
+  skip:
     requires: [ ~commit, ~pr ]
     environment:
-      GIT_SPARSE_CHECKOUT_PATH: "sample"
+      SD_SKIP_REPOSITORY_CLONE: true
     steps:
       - echo: |
-          echo "GIT_SPARSE_CHECKOUT_PATH=${GIT_SPARSE_CHECKOUT_PATH}"
           pwd
           ls -la
-          ls -la ../
-          cat ./sub/subsub/sample.txt || true
-          cat ./sample/sub/subsub/sample.txt || true
-          cat ../sample/sub/subsub/sample.txt || true
+
+  no-skip:
+    requires: [ ~commit, ~pr ]
+    steps:
+      - echo: |
+          pwd
+          ls -la
