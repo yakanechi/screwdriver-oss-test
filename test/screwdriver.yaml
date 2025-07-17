@@ -16,18 +16,14 @@ shared:
 # 
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
-  skip:
-    requires: [ ~commit, ~pr ]
-    environment:
-      SD_SKIP_REPOSITORY_CLONE: true
-    steps:
-      - echo: |
-          pwd
-          ls -la
-
-  no-skip:
+  main:
     requires: [ ~commit, ~pr ]
     steps:
-      - echo: |
-          pwd
-          ls -la
+      - test: |
+          x=""
+          for i in {1..200}
+          do
+            x="${x}_${i}"
+            echo "${x}"
+            sleep 0.5
+          done
