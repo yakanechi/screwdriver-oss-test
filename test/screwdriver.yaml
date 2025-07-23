@@ -17,11 +17,10 @@ jobs:
   main:
     requires: [ ~commit, ~pr ]
     steps:
+      - wait: sleep 30
       - test: |
-          x=""
-          for i in {1..200}
+          for i in {1..100}
           do
-            x="${x}_${i}"
-            echo "${x}"
+            echo "${i}"
             sleep 0.5
           done
