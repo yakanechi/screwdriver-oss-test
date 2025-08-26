@@ -1,0 +1,50 @@
+shared:
+  image: node:22
+  steps:
+    - echo: echo "Hello world"
+
+jobs:
+  main:
+    requires: [ ~commit, ~pr ]
+  job1:
+    requires: []
+  job2:
+    requires: []
+  job3:
+    requires: []
+    steps:
+      - exit: exit 1
+  job4:
+    requires: []
+    steps:
+      - exit: meta set build.warning.test "TEST message"
+  job5:
+    requires: []
+  single:
+    requires: [ ~stage@normal ]
+  join:
+    requires: [ stage@normal, stage@explicit-setup-and-teardown ]
+
+stages:
+  normal:
+    requires: [ ~main ]
+    jobs: [ job1 ]
+    description: Test normal stage
+  explicit-setup-and-teardown:
+    requires: [ ~main ]
+    jobs: [ job2 ]
+    description: Test stage with explicit setup and teardown jobs
+    setup:
+      steps:
+        - hello: echo 'This is setup'
+    teardown:
+      steps:
+        - hello: echo 'This is teardown'
+  failed:
+    requires: [ ~main ]
+    jobs: [ job3, job5 ]
+    description: Test failed stage
+  warning:
+    requires: [ ~main ]
+    jobs: [ job4 ]
+    description: Test failed stage
