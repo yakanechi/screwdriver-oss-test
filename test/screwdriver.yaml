@@ -16,11 +16,3 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
-    steps:
-      - wait: sleep 30
-      - test: |
-          for i in {1..200}
-          do
-            echo "${i}"
-            sleep 0.5
-          done
