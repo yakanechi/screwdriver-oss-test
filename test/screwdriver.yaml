@@ -16,3 +16,4 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
+
