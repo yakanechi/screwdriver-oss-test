@@ -5,8 +5,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
 childPipelines:
   scmUrls:
-    - git@github.com:yakanechi/screwdriver-oss-test-external-child1.git
-    # - git@github.com:yakanechi/screwdriver-oss-test-external-child2.git
+    # - git@github.com:yakanechi/screwdriver-oss-test-external-child1.git
+    - git@github.com:yakanechi/screwdriver-oss-test-external-child2.git
 
 shared:
   image: centos:centos7
