@@ -3,9 +3,9 @@
 #     shared
 # 
 # ----------------------------------------------------------------------------------------------------------------------
-childPipelines:
-  scmUrls:
-    - git@github.com:yakanechi/screwdriver-oss-test-child.git
+# childPipelines:
+#   scmUrls:
+#     - git@github.com:yakanechi/screwdriver-oss-test-child.git
 
 shared:
   image: centos:centos7
