@@ -16,3 +16,5 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
+    annotations:
+      screwdriver.cd/jobDisabledByDefault: true
