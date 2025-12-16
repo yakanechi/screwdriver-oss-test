@@ -15,10 +15,10 @@ shared:
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
   main1:
-    requires: [ ~commit, ~pr ]
+    requires: [ ~commit ]
 
   main2:
-    requires: [ ~commit, ~pr ]
+    requires: [ ~pr ]
 
   main3:
     requires: [ ~main1 ]
