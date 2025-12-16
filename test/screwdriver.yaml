@@ -3,6 +3,10 @@
 #     shared
 # 
 # ----------------------------------------------------------------------------------------------------------------------
+annotations:
+  screwdriver.cd/pipelineDescription: |
+    Repository (<a href=https://github.com/yakanechi/screwdriver-oss-test target=_blank>link</a>) 
+
 shared:
   image: centos:centos7
   steps:
