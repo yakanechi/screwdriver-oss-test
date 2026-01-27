@@ -18,10 +18,17 @@ shared:
 # 
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
-  main:
-    requires: [ ~commit, ~pr ]
+  job0:
+    requires: []
+  job1:
+    requires: [ ~commit ]
+  job2:
+    requires: [ job0, job1 ]
+# jobs:
+#   main:
+#     requires: [ ~commit, ~pr ]
 
-  jobDisabledByDefault:
-    requires: [ ~commit, ~pr ]
-    annotations:
-      screwdriver.cd/jobDisabledByDefault: true
+#   jobDisabledByDefault:
+#     requires: [ ~commit, ~pr ]
+#     annotations:
+#       screwdriver.cd/jobDisabledByDefault: true
