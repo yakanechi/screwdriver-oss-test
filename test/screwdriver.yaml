@@ -24,6 +24,8 @@ jobs:
     requires: [ ~commit ]
   job2:
     requires: [ job0, job1 ]
+    annotations:
+      screwdriver.cd/virtualJob: true
 # jobs:
 #   main:
 #     requires: [ ~commit, ~pr ]
