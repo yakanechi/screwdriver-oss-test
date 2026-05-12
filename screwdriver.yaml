@@ -9,18 +9,39 @@ shared:
     - echo: echo "Hello world"
 
 # ----------------------------------------------------------------------------------------------------------------------
-# 
+#
 #     jobs
-# 
+#
 # ----------------------------------------------------------------------------------------------------------------------
 jobs:
   main:
-    requires: [ ~commit, ~pr ]
-    environment:
-      GIT_SPARSE_CHECKOUT_PATH: "sample"
+    requires: [~pr, ~commit, ~commit:test]
     steps:
-      - echo: |
-          echo "GIT_SPARSE_CHECKOUT_PATH=${GIT_SPARSE_CHECKOUT_PATH}"
-          pwd
-          ls -la
-          ls -la test || true
+      - env-scm: |
+          echo "SCM_URL: ${SCM_URL}"
+          echo "GIT_URL: ${GIT_URL}"
+          echo "CONFIG_URL: ${CONFIG_URL}"
+          echo "GIT_BRANCH: ${GIT_BRANCH}"
+          echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
+          echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
+          echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
+      - scm: |
+          git log -1
+      - ls: ls -la
+      - test: echo "main"
+
+  test:
+    requires: [ ~main ]
+    steps:
+      - env-scm: |
+          echo "SCM_URL: ${SCM_URL}"
+          echo "GIT_URL: ${GIT_URL}"
+          echo "CONFIG_URL: ${CONFIG_URL}"
+          echo "GIT_BRANCH: ${GIT_BRANCH}"
+          echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
+          echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
+          echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
+      - scm: |
+          git log -1
+      - ls: ls -la
+      - test: echo "test"
