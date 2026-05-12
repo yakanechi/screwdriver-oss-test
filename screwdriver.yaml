@@ -28,7 +28,7 @@ jobs:
       - scm: |
           git log -1
       - ls: ls -la
-      - test: echo "main"
+      - test: echo "test"
 
   test2:
     requires: [ ~main ]
