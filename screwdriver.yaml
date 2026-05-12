@@ -30,7 +30,7 @@ jobs:
       - ls: ls -la
       - test: echo "main"
 
-  test:
+  test2:
     requires: [ ~main ]
     steps:
       - env-scm: |
