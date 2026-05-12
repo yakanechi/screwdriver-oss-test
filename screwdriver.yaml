@@ -26,7 +26,7 @@ jobs:
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
       - ls: ls -la
-      - test: echo "main"
+      - main: echo "main"
       - get1: meta get a
       - get: meta set a "extend"
       - get2: meta get a
@@ -43,7 +43,7 @@ jobs:
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
       - ls: ls -la
-      - test: echo "test"
+      - main: echo "main"
       - get1: meta get a
       - get: meta set a "extend"
       - get2: meta get a
