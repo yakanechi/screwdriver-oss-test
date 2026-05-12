@@ -25,10 +25,15 @@ jobs:
           echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
+      - scm: |
+          git log -1
       - ls: ls -la
       - test: echo "main"
+      - get1: meta get a
+      - get: meta set a "extend"
+      - get2: meta get a
 
-  test:
+  test2:
     requires: [ ~main ]
     steps:
       - env-scm: |
@@ -39,5 +44,10 @@ jobs:
           echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
+      - scm: |
+          git log -1
       - ls: ls -la
       - test: echo "test"
+      - get1: meta get a
+      - get: meta set a "extend"
+      - get2: meta get a
