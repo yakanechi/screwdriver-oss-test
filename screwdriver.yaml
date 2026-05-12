@@ -25,8 +25,6 @@ jobs:
           echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
-      - scm: |
-          git log -1
       - ls: ls -la
       - test: echo "main"
 
@@ -41,7 +39,5 @@ jobs:
           echo "PR_BASE_BRANCH_NAME: ${PR_BASE_BRANCH_NAME}"
           echo "PR_BRANCH_NAME: ${PR_BRANCH_NAME}"
           echo "SD_BUILD_SHA: ${SD_BUILD_SHA}"
-      - scm: |
-          git log -1
       - ls: ls -la
       - test: echo "test"
