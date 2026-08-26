@@ -6,24 +6,39 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
+    steps:
+      - echo: meta set test.main "main"
   job1:
     requires: []
+    steps:
+      - echo: meta set test.job1 "job1"
   job2:
     requires: []
+    steps:
+      - echo: meta set test.job2 "job2"
   job3:
     requires: []
     steps:
+      - echo: meta set test.job3 "job3"
       - exit: exit 1
   job4:
     requires: []
     steps:
+      - echo: meta set test.job4 "job4"
       - exit: meta set build.warning.test "TEST message"
   job5:
     requires: []
+    steps:
+      - echo: meta set test.job5 "job5"
   single:
     requires: [ ~stage@normal ]
+    steps:
+      - echo: meta set test.single "single"
   join:
     requires: [ stage@normal, stage@explicit-setup-and-teardown ]
+    steps:
+      - echo: meta set test.join "join"
+      - get: meta get test
 
 stages:
   normal:
