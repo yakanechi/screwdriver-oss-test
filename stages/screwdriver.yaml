@@ -25,6 +25,30 @@ jobs:
   join:
     requires: [ stage@normal, stage@explicit-setup-and-teardown ]
 
+stages:
+  normal:
+    requires: [ ~main ]
+    jobs: [ job1 ]
+    description: Test normal stage
+  explicit-setup-and-teardown:
+    requires: [ ~main ]
+    jobs: [ job2 ]
+    description: Test stage with explicit setup and teardown jobs
+    setup:
+      steps:
+        - hello: echo 'This is setup'
+    teardown:
+      steps:
+        - hello: echo 'This is teardown'
+  failed:
+    requires: [ ~commit ]
+    jobs: [ job3, job5 ]
+    description: Test failed stage
+  warning:
+    requires: [ ~main ]
+    jobs: [ job4 ]
+    description: Test failed stage
+
 # jobs:
 #   abort:
 #     requires: [ ~commit, ~pr ]
