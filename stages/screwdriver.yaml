@@ -6,39 +6,24 @@ shared:
 jobs:
   main:
     requires: [ ~commit, ~pr ]
-    steps:
-      - echo: meta set test.main "main"
   job1:
     requires: []
-    steps:
-      - echo: meta set test.job1 "job1"
   job2:
     requires: []
-    steps:
-      - echo: meta set test.job2 "job2"
   job3:
     requires: []
     steps:
-      - echo: meta set test.job3 "job3"
       - exit: exit 1
   job4:
     requires: []
     steps:
-      - echo: meta set test.job4 "job4"
       - exit: meta set build.warning.test "TEST message"
   job5:
     requires: []
-    steps:
-      - echo: meta set test.job5 "job5"
   single:
     requires: [ ~stage@normal ]
-    steps:
-      - echo: meta set test.single "single"
   join:
     requires: [ stage@normal, stage@explicit-setup-and-teardown ]
-    steps:
-      - echo: meta set test.join "join"
-      - get: meta get test
 
 stages:
   normal:
@@ -56,73 +41,55 @@ stages:
       steps:
         - hello: echo 'This is teardown'
   failed:
-    requires: [ ~commit ]
+    requires: [ ~main ]
     jobs: [ job3, job5 ]
     description: Test failed stage
   warning:
     requires: [ ~main ]
     jobs: [ job4 ]
     description: Test failed stage
+    
+# shared:
+#   image: node:22
+#   steps:
+#     - echo: echo "Hello world"
 
 # jobs:
-#   abort:
-#     requires: [ ~commit, ~pr ]
 #   main:
 #     requires: [ ~commit, ~pr ]
-#   main1:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
-#   main2:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
-#   main3:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
-#   main4:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
-#   main5:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
-#   main6:
-#     requires: [ ~main ]
-#     annotations:
-#       screwdriver.cd/virtualJob: true
+#     steps:
+#       - echo: meta set test.main "main"
 #   job1:
 #     requires: []
+#     steps:
+#       - echo: meta set test.job1 "job1"
 #   job2:
 #     requires: []
+#     steps:
+#       - echo: meta set test.job2 "job2"
 #   job3:
 #     requires: []
 #     steps:
+#       - echo: meta set test.job3 "job3"
 #       - exit: exit 1
 #   job4:
 #     requires: []
 #     steps:
+#       - echo: meta set test.job4 "job4"
 #       - exit: meta set build.warning.test "TEST message"
 #   job5:
 #     requires: []
-#   job6:
-#     requires: []
-#   job6-after:
-#     requires: [ ~stage@explicit-setup]
-#   job7:
-#     requires: []
-#   job7-after:
-#     requires: [ ~stage@explicit-teardown]
+#     steps:
+#       - echo: meta set test.job5 "job5"
 #   single:
 #     requires: [ ~stage@normal ]
+#     steps:
+#       - echo: meta set test.single "single"
 #   join:
 #     requires: [ stage@normal, stage@explicit-setup-and-teardown ]
-#   remote-join:
-#     requires: [ sd@25767:main ]
-#   remote-join2:
-#     requires: [ ~remote-join ]
+#     steps:
+#       - echo: meta set test.join "join"
+#       - get: meta get test
 
 # stages:
 #   normal:
@@ -139,25 +106,109 @@ stages:
 #     teardown:
 #       steps:
 #         - hello: echo 'This is teardown'
-#   explicit-setup:
-#     requires: [ ~main ]
-#     jobs: [ job6 ]
-#     description: Test stage with explicit setup and teardown jobs
-#     setup:
-#       steps:
-#         - hello: echo 'This is teardown'
-#   explicit-teardown:
-#     requires: [ ~remote-join ]
-#     jobs: [ job7 ]
-#     description: Test stage with explicit setup and teardown jobs
-#     teardown:
-#       steps:
-#         - hello: echo 'This is teardown'
 #   failed:
-#     requires: [ ~remote-join ]
+#     requires: [ ~commit ]
 #     jobs: [ job3, job5 ]
 #     description: Test failed stage
 #   warning:
-#     requires: [ ~remote-join ]
+#     requires: [ ~main ]
 #     jobs: [ job4 ]
 #     description: Test failed stage
+
+# # jobs:
+# #   abort:
+# #     requires: [ ~commit, ~pr ]
+# #   main:
+# #     requires: [ ~commit, ~pr ]
+# #   main1:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   main2:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   main3:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   main4:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   main5:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   main6:
+# #     requires: [ ~main ]
+# #     annotations:
+# #       screwdriver.cd/virtualJob: true
+# #   job1:
+# #     requires: []
+# #   job2:
+# #     requires: []
+# #   job3:
+# #     requires: []
+# #     steps:
+# #       - exit: exit 1
+# #   job4:
+# #     requires: []
+# #     steps:
+# #       - exit: meta set build.warning.test "TEST message"
+# #   job5:
+# #     requires: []
+# #   job6:
+# #     requires: []
+# #   job6-after:
+# #     requires: [ ~stage@explicit-setup]
+# #   job7:
+# #     requires: []
+# #   job7-after:
+# #     requires: [ ~stage@explicit-teardown]
+# #   single:
+# #     requires: [ ~stage@normal ]
+# #   join:
+# #     requires: [ stage@normal, stage@explicit-setup-and-teardown ]
+# #   remote-join:
+# #     requires: [ sd@25767:main ]
+# #   remote-join2:
+# #     requires: [ ~remote-join ]
+
+# # stages:
+# #   normal:
+# #     requires: [ ~main ]
+# #     jobs: [ job1 ]
+# #     description: Test normal stage
+# #   explicit-setup-and-teardown:
+# #     requires: [ ~main ]
+# #     jobs: [ job2 ]
+# #     description: Test stage with explicit setup and teardown jobs
+# #     setup:
+# #       steps:
+# #         - hello: echo 'This is setup'
+# #     teardown:
+# #       steps:
+# #         - hello: echo 'This is teardown'
+# #   explicit-setup:
+# #     requires: [ ~main ]
+# #     jobs: [ job6 ]
+# #     description: Test stage with explicit setup and teardown jobs
+# #     setup:
+# #       steps:
+# #         - hello: echo 'This is teardown'
+# #   explicit-teardown:
+# #     requires: [ ~remote-join ]
+# #     jobs: [ job7 ]
+# #     description: Test stage with explicit setup and teardown jobs
+# #     teardown:
+# #       steps:
+# #         - hello: echo 'This is teardown'
+# #   failed:
+# #     requires: [ ~remote-join ]
+# #     jobs: [ job3, job5 ]
+# #     description: Test failed stage
+# #   warning:
+# #     requires: [ ~remote-join ]
+# #     jobs: [ job4 ]
+# #     description: Test failed stage
